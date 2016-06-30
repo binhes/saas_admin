@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+<!-- multi -->
+
+    <record model="ir.rule" id="saas_user_info_rule">
+        <field name="name">saas_user_info rule</field>
+        <field name="model_id" search="[('model','=','saas.user.info')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('user', '=', user.partner_id.id)]</field>
+    </record>
+</data>
+</openerp>

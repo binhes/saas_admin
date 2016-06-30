@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_saas_admin_saas-user-info,saas_admin.saas_user_info,model_saas_user_info,,1,1,1,0
+access_saas_admin_saas-server,saas_admin.saas_server,model_saas_server,,1,0,0,0
+access_saas_admin_product_product,saas_admin.product_product,model_product_product,,1,0,0,0

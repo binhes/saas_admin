@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           <report 
+            string="server list" 
+            id="menu_saas_action_report_server" 
+            model="saas.user.info" 
+            report_type="qweb-html"
+            name="saas_admin.action_saas_report_server" 
+            file="saas_admin.report_server" 
+        />
+    </data>
+    </openerp>

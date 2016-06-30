@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        
+        <record forcecreate="True" id="ir_test_counter_action" model="ir.cron">
+            <field name="name">Test Counter</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall"/>
+            <field eval="'saas.user.info'" name="model"/>
+            <field eval="'get_counter'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+        <!-- Email template for registry  saas -->
+        <record id="registry_saas_db_email" model="email.template">
+            <field name="name">Registry Saas db</field>
+            <field name="model_id" ref="saas_admin.model_saas_user_info"/>
+            <field name="email_from"><![CDATA["postmaster-odoo@binhes.com"]]></field>
+            <field name="email_to">${object.user.email|safe}</field>
+            <field name="subject">Welcome to registry saas db </field>
+            <field name="body_html"><![CDATA[
+<p>thanks for registry.</p>
+
+<p>You may<a href="http://${object.url_addres}">login</a>.with user:admin password, with:</p>
+
+<p>Note: you can login in <a href ="http://www.binhes.com/saas/apply">link</a>for more infomation.]]></field>
+        </record>
+        
+    </data>
+</openerp>

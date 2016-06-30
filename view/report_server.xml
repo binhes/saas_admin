@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<template id="action_saas_report_server">
+		<t t-call="report.html_container">
+			<t t-call="report.external_layout">	
+				<table  width ="100%">
+					<div>
+						<h3 align="center">报表测试</h3>
+					</div>                                                   
+					<thead>
+						<th width ="40%">主机名称</th>
+						<th width ="30%">主机地址</th>
+						<th width ="30%">端口</th>
+					</thead>
+				</table>
+				<t t-foreach="docs" t-as="o">
+					<div class="page">
+						<table  width ="100%">
+							<tr>
+								<td width="40%"><span t-field="o.host_name"/></td>
+								<td width="30%"> <span t-field="o.server.server_addres"/></td>
+								<td width="30%"><span t-field="o.server.rpc_port"/></td>
+								   <img width = '100' height = '100' t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.server.server_addres, 1000, 1000)"/>
+							</tr>
+						</table>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</data>
+</openerp>

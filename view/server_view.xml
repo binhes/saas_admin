@@ -1,0 +1,140 @@
+<openerp>
+  <data>
+    <record id="saas_server_tree_view" model="ir.ui.view">
+            <field name="name">saas.server.tree</field>
+            <field name="model">saas.server</field>
+            <field name="arch" type="xml">
+                <tree string="saas server" editable="top">
+                    <field name="name"/>
+                    <field name="server_addres"/>
+                    <field name="server_pass" password="True"/>
+                    <field name="rpc_port"/>
+                    <field name="product_id"/>
+                    <field name="is_domain"/>
+                </tree>
+            </field>
+    </record>
+	<record id="saas_user_info_tree_view" model="ir.ui.view">
+		<field name="name">saas.user.info.tree</field>
+		<field name="model">saas.user.info</field>
+		<field name="arch" type="xml">
+			<tree string="hosts" >
+				<field name="user"/>
+				<field name="host_type"/>
+				<field name="url_addres" widget="url"/>
+				<field name="start_date"/>
+				<field name="end_date"/>
+				<field name="state"/>
+				<field name = 'counter'/>
+			</tree>
+		</field>
+	</record>
+        
+	<record id="saas_user_info_form_view" model="ir.ui.view">
+		<field name="name">saas.user.info.form</field>
+		<field name="model">saas.user.info</field>
+		<field name="arch" type="xml">
+			<form string="host" >
+			<header>
+			   <button name="create_use_db"  string="create db" type="object" class="oe_highlight" />
+			   <button name="drop_use_db"  string="drop db" type="object" class="oe_highlight" />
+			</header>
+			<sheet>
+			<div class="oe_title">
+						<label for="name" class="oe_edit_only"/>
+						<h1>
+							<field name="name"/>
+						</h1>
+			 </div>
+				<group>
+				
+				<field name="user"/>
+				<field name="host_name"/>
+				<field name="host_type"/>
+				<field name="server"/>
+				<field name="url_addres" widget="url"/>
+				<field name="start_date"/>
+				<field name="end_date"/>
+				<field name="state"/>
+				<field name = 'counter'/>
+				</group>
+			 </sheet>
+			</form>
+		</field>
+	</record>
+        
+        
+	<record id="action_saas_server_tree_view" model="ir.actions.act_window">
+		<field name="name">saas server</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">saas.server</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,kanban</field>
+		<field name="view_id" ref="saas_server_tree_view"/>
+		<field name="context">{}</field>
+		<field name="help" type="html">
+		  <p class="oe_view_nocontent_create">
+			click create button to create a new server.
+		  </p><p>
+		  </p>
+		</field>
+	</record>
+        
+	<record id="action_saas_user_info_tree_view" model="ir.actions.act_window">
+		<field name="name">hosts</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">saas.user.info</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form,kanban</field>
+		<field name="view_id" ref="saas_user_info_tree_view"/>
+		<field name="context">{}</field>
+		<field name="help" type="html">
+		  <p class="oe_view_nocontent_create">
+			click create button to create a new host.
+		  </p><p>
+		  </p>
+		</field>
+	</record>
+
+    <record model="ir.ui.view" id="view_inherit_product_warranty">
+		<field name="name">view.inherit.product.warranty</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="product.product_normal_form_view"/>
+		<field name="arch" type="xml">
+			<field name="lst_price" position="after">
+					<label for="warranty"/>
+					<div>
+						<field name="warranty2" class="oe_inline"/> months
+					</div>
+
+			</field>
+		</field>
+	</record>
+	<record id="view_partner_form_saas" model="ir.ui.view">
+		<field name="name">view.partner.form.saas.inherit</field>
+		<field name="model">res.partner</field>
+		<field name="priority">5</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="arch" type="xml">
+			<page  name="sales_purchases" position="after">
+				<page string="saas hosts">                        
+					 <field name="saas_ids" readonly = "0">
+						 <tree>
+							  <field name="name"/>
+							  <field name="user"/>
+							  <field name="host_name"/>
+							  <field name="host_type"/>
+							  <field name="server"/>
+							  <field name="url_addres"/>
+							  <field name="state"/>							      
+						 </tree>
+					 </field>
+				</page>              				
+			</page>
+		</field>
+	</record>     	
+	<menuitem id="main_menu_server" name="Saas" icon="terp-tools" parent="base.menu_custom" sequence="15" groups="base.group_no_one"/>
+		<menuitem action="action_saas_server_tree_view" id="menu_set_server" parent="main_menu_server" sequence="10" groups="base.group_no_one" /> 	
+		<menuitem action="action_saas_user_info_tree_view" id="menu_saas_user_info" parent="main_menu_server" sequence="10" groups="base.group_no_one"/> 	
+  </data>
+</openerp>
