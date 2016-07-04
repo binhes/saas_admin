@@ -15,7 +15,7 @@
             <field eval="'()'" name="args"/>
         </record>
         <!-- Email template for registry  saas -->
-        <record id="registry_saas_db_email" model="email.template">
+        <record id="registry_saas_db_email" model="mail.template">
             <field name="name">Registry Saas db</field>
             <field name="model_id" ref="saas_admin.model_saas_user_info"/>
             <field name="email_from"><![CDATA["postmaster-odoo@binhes.com"]]></field>
